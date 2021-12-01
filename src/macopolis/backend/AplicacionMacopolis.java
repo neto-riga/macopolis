@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 	05-11-2021
 *******************/
 
-public class Cartelera {
+public class AplicacionMacopolis {
 	private ArrayList<Sala> salas;
 	
 	public ArrayList<Sala> salasDisponibles() {
