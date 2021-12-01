@@ -2,7 +2,7 @@ package macopolis.frontend;
 
 /*******************
 última modificación:
-	19-11-2021
+	30-11-2021
 *******************/
 
 import java.awt.BorderLayout;
@@ -17,7 +17,7 @@ public class InterfazMacopolis extends JFrame{
 	private PanelNavegacion panelNavegacion;
 
 	public InterfazMacopolis() {
-		setTitle("Aplicación Cursos");
+		setTitle("Aplicación Macopolis");
 		setSize(800, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);

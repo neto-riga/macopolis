@@ -2,7 +2,7 @@ package macopolis.frontend;
 
 /*******************
 última modificación:
-	19-11-2021
+	30-11-2021
 *******************/
 
 import java.awt.BorderLayout;
@@ -26,12 +26,14 @@ public class PanelPelicula extends JPanel{
 	private JLabel lbClasificacion;
 	private JLabel lbDirector;
 	private JLabel lbSinopsis;
+	private JLabel lbHorario;
 	
 	private JTextField txtTitulo;
 	private JTextField txtDuracion;
 	private JTextField  txtClasificacion;
 	private JTextField txtDirector;
 	private JTextField txtSinopsis;
+	private JTextField txtHorario;
 	
 	private JLabel lbImagen;
 	
@@ -41,7 +43,7 @@ public class PanelPelicula extends JPanel{
 		setLayout(borderLayout);
 		borderLayout.setHgap(20);
 		
-		TitledBorder border = BorderFactory.createTitledBorder("Película");
+		TitledBorder border = BorderFactory.createTitledBorder("Sala");
 		border.setTitleColor(Color.BLUE);
 		setBorder(border);
 		
@@ -58,6 +60,7 @@ public class PanelPelicula extends JPanel{
 		lbClasificacion = new JLabel("Clasificación: ");
 		lbDirector = new JLabel("Director: ");
 		lbSinopsis = new JLabel("Sinopsis: ");
+		lbHorario = new JLabel("Horario: ");
 		
 		txtTitulo = new JTextField();
 		txtTitulo.setEditable(false);
@@ -84,7 +87,12 @@ public class PanelPelicula extends JPanel{
 		txtSinopsis.setBackground(Color.LIGHT_GRAY);
 		txtSinopsis.setForeground(Color.BLUE);
 		
-		panelDatosPelicula.setLayout(new GridLayout(5,2));
+		txtHorario = new JTextField();
+		txtHorario.setEditable(false);
+		txtHorario.setBackground(Color.LIGHT_GRAY);
+		txtHorario.setForeground(Color.BLUE);
+		
+		panelDatosPelicula.setLayout(new GridLayout(6,2));
 		panelSinopsisPelicula.setLayout(new GridLayout(2,1));
 		
 		panelDatosPelicula.add(lbTitulo);
@@ -95,6 +103,8 @@ public class PanelPelicula extends JPanel{
 		panelDatosPelicula.add(txtClasificacion);
 		panelDatosPelicula.add(lbDirector);
 		panelDatosPelicula.add(txtDirector);
+		panelDatosPelicula.add(lbHorario);
+		panelDatosPelicula.add(txtHorario);
 		
 		panelSinopsisPelicula.add(lbSinopsis);
 		panelSinopsisPelicula.add(txtSinopsis);

@@ -2,7 +2,7 @@ package macopolis.backend;
 
 /*******************
 última modificación:
-	17-11-2021
+	29-11-2021
 *******************/
 
 import java.util.ArrayList;
@@ -14,13 +14,14 @@ public class Sala {
 	private ArrayList<Boleto> boletos;
 	private String horario;
 	
-	private final static int numAsientos = 60;
+	private final static int NUM_ASIENTOS = 60;
+	private final static float PRECIO_BOLETO = 60;
 	
 	public Sala(Pelicula peli) {
 		this.peli = peli;
 		boletos = new ArrayList<Boleto>();
 		
-		for (int i = 0; i<numAsientos; i++) {
+		for (int i = 0; i<NUM_ASIENTOS; i++) {
 			boletos.add(new Boleto(i+1));
 		}
 	}
@@ -80,20 +81,20 @@ public class Sala {
 		
 		boletos.get(lugar-1).setComprado(true);
 		if (edad < 12) {
-			return (float) (60 * 0.8);
+			return (float) (PRECIO_BOLETO * 0.8);
 		}else if(edad > 65) {
-			return (float) (60 * 0.4);
+			return (float) (PRECIO_BOLETO * 0.4);
 		}
 		
-		return 60;
+		return PRECIO_BOLETO;
 	}
 	
 /*******Main para hacer pruebas*************/
 	
-//	public static void main(String[] args) {
-//		Sala sala1 = new Sala(new Pelicula("La la land"));
-//		sala1.compraBoleto(30, 5);
-//		sala1.compraBoleto(30, 24);
-//		sala1.imprimeBoletosDisponibles();
-//	}
+	public static void main(String[] args) {
+		Sala sala1 = new Sala(new Pelicula("La la land"));
+		sala1.compraBoleto(30, 5);
+		sala1.compraBoleto(30, 24);
+		sala1.imprimeBoletosDisponibles();
+	}
 }
