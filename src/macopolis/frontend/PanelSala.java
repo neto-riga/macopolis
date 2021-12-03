@@ -2,7 +2,7 @@ package macopolis.frontend;
 
 /*******************
 última modificación:
-	19-11-2021
+	02-12-2021
 *******************/
 
 import java.awt.Color;
@@ -24,20 +24,30 @@ import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
 
-public class PanelSala extends JPanel{
+public class PanelSala extends JPanel implements ActionListener{
 	
+
 	private ArrayList<JButton> asientosBotones;
-	private JLabel lblPantalla;
+	private ArrayList<String> asientos;
+	private JLabel lblPantalla ;
 	private JLabel lblEdad;
 	private JTextArea cajaEdad;
 	private JButton btnEdad;
+	private static final String ACEPTAR_EDAD = "ACEPTAR EDAD";
 	private JLabel lblPrecio;
 	private JTextField txtPrecio;
 	private JButton btnCompra;
+	private static final String COMPRAR_BOLETO = "COMPRAR BOLETO";
+	private Integer seleccionado;
+	private InterfazMacopolis ventanaPrincipal; 
 	
-	public PanelSala() {
+	
+	public PanelSala(InterfazMacopolis ventanaPrincipal) {
+		
+		 asientos=new ArrayList<String>();
+		 llenadoAsientos();
 		setLayout(new BorderLayout());
-		TitledBorder border = BorderFactory.createTitledBorder("Asientos disponibles");
+		TitledBorder border = BorderFactory.createTitledBorder("Asientos Sala");
 		border.setTitleColor(Color.BLUE);
 		setBorder(border);
 		
@@ -64,6 +74,8 @@ public class PanelSala extends JPanel{
 //		cajaEdad.setBounds(150, 50, 100, 25);
 		
 		btnEdad = new JButton("Aceptar");
+		btnEdad.setActionCommand(ACEPTAR_EDAD);
+		btnEdad.addActionListener(this);
 		
 		lblPrecio = new JLabel("Total: ");
 //		lblPrecio.setBounds(300, 50, 100, 25);
@@ -75,7 +87,8 @@ public class PanelSala extends JPanel{
 //		txtPrecio.setBounds(400, 50, 100, 25);
 		
 		btnCompra = new JButton("Comprar");
-//		btnCompra.setBounds(550, 50, 100, 25);
+		btnCompra.setActionCommand(COMPRAR_BOLETO);
+		btnCompra.addActionListener(this);
 		
 		// Agregar y mostrar los botones de los asientos
 		asientosBotones = new ArrayList<JButton>();
@@ -83,6 +96,8 @@ public class PanelSala extends JPanel{
 		for (Integer i = 1; i <= 60 ; i++) {
 			asientosBotones.add(new JButton(i.toString()));
 			panelAsientos.add(asientosBotones.get(i-1));
+			asientosBotones.get(i-1).setActionCommand(asientos.get(i-1));
+			asientosBotones.get(i-1).addActionListener(this);
 		}
 		
 		panelPantalla.add(lblPantalla);
@@ -94,5 +109,57 @@ public class PanelSala extends JPanel{
 		panelCompra.add(txtPrecio);
 		panelCompra.add(btnCompra);
 		
+	}
+	
+	
+	
+	public void llenadoAsientos() {
+		//Constantes para los botones
+		for(Integer i = 1; i <= 60 ; i++) {
+			 asientos.add("asiento"+i.toString());
+		}
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String nombreEvento = e.getActionCommand();
+		
+		
+		int tamaño = nombreEvento.length();
+		String i = null;
+		
+		if(tamaño==8) {
+			i = nombreEvento.substring(tamaño-1);
+		}else if(tamaño==9){
+			i = nombreEvento.substring(tamaño-2);
+		}
+				
+		if(nombreEvento.equals("asiento"+i)) {
+			
+			if(asientosBotones.get(Integer.parseInt(i)-1).getBackground()!=Color.RED && seleccionado == null) {
+				asientosBotones.get(Integer.parseInt(i)-1).setBackground(Color.GREEN);
+				seleccionado = Integer.parseInt(i);
+				
+			}else if(asientosBotones.get(Integer.parseInt(i)-1).getBackground()!=Color.RED && seleccionado != null){
+				asientosBotones.get(seleccionado-1).setBackground(null);
+				asientosBotones.get(Integer.parseInt(i)-1).setBackground(Color.GREEN);
+				seleccionado = Integer.parseInt(i);
+				
+			}else if(asientosBotones.get(Integer.parseInt(i)-1).getBackground() == Color.RED){
+				JOptionPane.showMessageDialog(null, "Boleto ocupado");
+				
+			}
+		}else if(nombreEvento.equals(COMPRAR_BOLETO)){
+			
+			if (seleccionado != null) {
+				asientosBotones.get(seleccionado-1).setBackground(Color.RED);
+				JOptionPane.showMessageDialog(null, "El boleto número "
+						+ seleccionado.toString()
+						+ " fue comprado con éxito");
+				seleccionado = null;
+			}else if(seleccionado == null) {
+				JOptionPane.showMessageDialog(null, "Seleccione un asiento antes");
+			}
+		}
 	}
 }

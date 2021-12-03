@@ -43,7 +43,7 @@ public class PanelPelicula extends JPanel{
 		setLayout(borderLayout);
 		borderLayout.setHgap(20);
 		
-		TitledBorder border = BorderFactory.createTitledBorder("Sala");
+		TitledBorder border = BorderFactory.createTitledBorder("Información Película");
 		border.setTitleColor(Color.BLUE);
 		setBorder(border);
 		

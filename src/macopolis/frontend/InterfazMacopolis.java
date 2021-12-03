@@ -2,10 +2,12 @@ package macopolis.frontend;
 
 /*******************
 última modificación:
-	30-11-2021
+
+	03-12-2021
 *******************/
 
 import java.awt.BorderLayout;
+
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,16 +27,15 @@ public class InterfazMacopolis extends JFrame{
 		setLayout( new BorderLayout());
 		
 //		aplicacionCurso = new AplicacionCurso();
-//		
+		
 		panelPelicula = new PanelPelicula();
-		panelSala = new PanelSala();
-		panelNavegacion = new PanelNavegacion();
+		panelSala = new PanelSala(this);
+		panelNavegacion = new PanelNavegacion(this);
 		
 		add(panelPelicula, BorderLayout.NORTH);
 		add(panelSala, BorderLayout.CENTER);
 		add(panelNavegacion, BorderLayout.SOUTH);
-//		
-//		mostrarInformacionAlumno(aplicacionCurso.getAlumnoActual());
+
 	}
 	
 	public static void main(String[] args) {
@@ -42,5 +43,17 @@ public class InterfazMacopolis extends JFrame{
 		interfaz.setVisible(true);
 
 	}
+
+//	//Método encargado de invocar el método que regresa la sala siguiente
+//		public void siguiente() {
+//			Sala salas = .getSalaSiguiente();
+//			//mostrarInformacionSala(sala);
+//		}
+//		
+//	//Método encargado de invocar el método que regresa la sala anterior
+//		public void anterior() {
+//			Sala salas= aplicacionCursos.getSalaAnterior();
+//			//mostrarInformacionSala(sala);
+//		}
 
 }

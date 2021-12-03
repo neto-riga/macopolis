@@ -34,8 +34,8 @@ public class PanelNavegacion extends JPanel{
 	//Constructor del panel
 	
 	
-	public PanelNavegacion(/*InterfazMacopolis ventanaPrincipal*/) {
-//		this.ventanaPrincipal = ventanaPrincipal;
+	public PanelNavegacion(InterfazMacopolis ventanaPrincipal) {
+		this.ventanaPrincipal = ventanaPrincipal;
 		setLayout(new FlowLayout());
 		TitledBorder border = BorderFactory.createTitledBorder("Navegación");
 		border.setTitleColor(Color.BLUE);
