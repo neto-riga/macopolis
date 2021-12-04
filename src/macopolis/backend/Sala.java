@@ -27,6 +27,16 @@ public class Sala {
 		}
 	}
 	
+	public Sala(Pelicula peli, Date horario) {
+		this.peli = peli;
+		boletos = new ArrayList<Boleto>();
+		
+		for (int i = 0; i<NUM_ASIENTOS; i++) {
+			boletos.add(new Boleto(i+1));
+		}
+		this.horario = horario;
+	}
+	
 	public Sala() {
 		
 	}
