@@ -2,7 +2,8 @@ package macopolis.frontend;
 
 /*******************
 última modificación:
-	02-12-2021
+	04-12-2021
+	02:08 a.m.
 *******************/
 
 import java.awt.Color;
@@ -15,10 +16,9 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
@@ -42,12 +42,12 @@ public class PanelSala extends JPanel implements ActionListener{
 	private InterfazMacopolis ventanaPrincipal; 
 	
 	
-	public PanelSala(InterfazMacopolis ventanaPrincipal) {
-		
-		 asientos=new ArrayList<String>();
-		 llenadoAsientos();
+public PanelSala(InterfazMacopolis ventanaPrincipal) {
+		this.ventanaPrincipal = ventanaPrincipal;
+		asientos=new ArrayList<String>();
+		llenadoAsientos();
 		setLayout(new BorderLayout());
-		TitledBorder border = BorderFactory.createTitledBorder("Asientos Sala");
+		TitledBorder border = BorderFactory.createTitledBorder("Asientos sala");
 		border.setTitleColor(Color.BLUE);
 		setBorder(border);
 		
@@ -67,7 +67,7 @@ public class PanelSala extends JPanel implements ActionListener{
 		lblPantalla = new JLabel("Pantalla");
 		
 		//Agregar los campos de compra
-		lblEdad = new JLabel("Edad");
+		lblEdad = new JLabel("Edad: ",SwingConstants.RIGHT);
 //		lblEdad.setBounds(50, 50, 100, 25); 
 		
 		cajaEdad = new JTextArea();
@@ -77,10 +77,10 @@ public class PanelSala extends JPanel implements ActionListener{
 		btnEdad.setActionCommand(ACEPTAR_EDAD);
 		btnEdad.addActionListener(this);
 		
-		lblPrecio = new JLabel("Total: ");
+		lblPrecio = new JLabel("Total: $", SwingConstants.RIGHT);
 //		lblPrecio.setBounds(300, 50, 100, 25);
 		
-		txtPrecio = new JTextField();
+		txtPrecio = new JTextField("0.0");
 		txtPrecio.setEditable(false);
 		txtPrecio.setBackground(Color.LIGHT_GRAY);
 		txtPrecio.setForeground(Color.BLUE);
@@ -124,6 +124,8 @@ public class PanelSala extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String nombreEvento = e.getActionCommand();
 		
+		Double descuento = 1.0;
+		Double precioTotal=70*descuento;
 		
 		int tamaño = nombreEvento.length();
 		String i = null;
@@ -149,6 +151,8 @@ public class PanelSala extends JPanel implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Boleto ocupado");
 				
 			}
+			
+			
 		}else if(nombreEvento.equals(COMPRAR_BOLETO)){
 			
 			if (seleccionado != null) {
@@ -157,9 +161,25 @@ public class PanelSala extends JPanel implements ActionListener{
 						+ seleccionado.toString()
 						+ " fue comprado con éxito");
 				seleccionado = null;
+				precioTotal=0.0;
+				txtPrecio.setText(precioTotal.toString());
+				cajaEdad.setText(null);
 			}else if(seleccionado == null) {
 				JOptionPane.showMessageDialog(null, "Seleccione un asiento antes");
 			}
+			
+		}else if(nombreEvento.equals(ACEPTAR_EDAD)) {
+			if(Integer.parseInt(cajaEdad.getText())<13) {
+				descuento=0.9;
+			}else if(Integer.parseInt(cajaEdad.getText())>64) {
+				descuento=0.85;
+			}else {
+				descuento=1.0;
+			}
+			
+			precioTotal = 70*descuento;
+			txtPrecio.setText(precioTotal.toString());
 		}
+		
 	}
 }

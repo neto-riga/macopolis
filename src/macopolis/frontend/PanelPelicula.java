@@ -19,6 +19,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
 
+import macopolis.backend.Sala;
+
 public class PanelPelicula extends JPanel{
 	
 	private JLabel lbTitulo;
@@ -112,6 +114,19 @@ public class PanelPelicula extends JPanel{
 		lbImagen = new JLabel("Poster Película");
 		panelPosterPelicula.add(lbImagen);
 
+	}
+	
+	public void actualizarPanel(Sala sala) {
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+		
+		txtTitulo.setText(sala.getPeli().getTitulo());
+		txtDuracion.setText(sala.getPeli().getDuracion().toString());
+		txtClasificacion.setText(sala.getPeli().getGenero().toString());
+		txtDirector.setText(sala.getPeli().getDirector());
+		txtHorario.setText(sdf.format(sala.getHorario()));
+		
+		txtSinopsis.setText(sala.getPeli().getSinopsis());
+		
 	}
 	
 }

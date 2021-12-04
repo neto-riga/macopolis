@@ -12,11 +12,14 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import macopolis.backend.AplicacionMacopolis;
+
 public class InterfazMacopolis extends JFrame{
 	
 	private PanelPelicula panelPelicula;
 	private PanelSala panelSala;
 	private PanelNavegacion panelNavegacion;
+	private AplicacionMacopolis aplicacionMacopolis;
 
 	public InterfazMacopolis() {
 		setTitle("Aplicación Macopolis");
@@ -26,7 +29,7 @@ public class InterfazMacopolis extends JFrame{
 		setResizable(false);
 		setLayout( new BorderLayout());
 		
-//		aplicacionCurso = new AplicacionCurso();
+		aplicacionMacopolis = new AplicacionMacopolis();
 		
 		panelPelicula = new PanelPelicula();
 		panelSala = new PanelSala(this);
