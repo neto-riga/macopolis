@@ -23,6 +23,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
+import macopolis.backend.Boleto;
+import macopolis.backend.Sala;
+
 
 public class PanelSala extends JPanel implements ActionListener{
 	
@@ -120,6 +123,16 @@ public PanelSala(InterfazMacopolis ventanaPrincipal) {
 		}
 	}
 	
+	public void actualizarAsientos(Sala sala) {
+		for(int k = 0; k < sala.getBoletos().size() ; k++) {
+			if(sala.getBoletos().get(k).isComprado()) {
+				asientosBotones.get(k).setBackground(Color.RED);
+			}else {
+				asientosBotones.get(k).setBackground(null);
+			}
+		}
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String nombreEvento = e.getActionCommand();
@@ -160,6 +173,7 @@ public PanelSala(InterfazMacopolis ventanaPrincipal) {
 				JOptionPane.showMessageDialog(null, "El boleto número "
 						+ seleccionado.toString()
 						+ " fue comprado con éxito");
+				ventanaPrincipal.comprarAsiento(seleccionado);
 				seleccionado = null;
 				precioTotal=0.0;
 				txtPrecio.setText(precioTotal.toString());

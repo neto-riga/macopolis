@@ -4,6 +4,7 @@ package macopolis.frontend;
 última modificación:
 
 	03-12-2021
+	16:45
 *******************/
 
 import java.awt.BorderLayout;
@@ -50,8 +51,13 @@ public class InterfazMacopolis extends JFrame{
 
 	}
 	
+	public void comprarAsiento(Integer k) {
+		aplicacionMacopolis.getSalaActual().getBoletos().get(k-1).setComprado(true);
+	}
+	
 	public void mostrarInformacionSala(Sala sala) {
 		panelPelicula.actualizarPanel(sala);
+		panelSala.actualizarAsientos(sala);
 	}
 	
 	public void siguiente() {
