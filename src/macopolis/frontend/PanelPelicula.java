@@ -2,7 +2,7 @@ package macopolis.frontend;
 
 /*******************
 última modificación:
-	30-11-2021
+	04-12-2021
 *******************/
 
 import java.awt.BorderLayout;
@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -27,14 +28,14 @@ public class PanelPelicula extends JPanel{
 	private JLabel lbDuracion;
 	private JLabel lbClasificacion;
 	private JLabel lbDirector;
-	private JLabel lbSinopsis;
+//	private JLabel lbSinopsis;
 	private JLabel lbHorario;
 	
 	private JTextField txtTitulo;
 	private JTextField txtDuracion;
-	private JTextField  txtClasificacion;
+	private JTextField txtClasificacion;
 	private JTextField txtDirector;
-	private JTextField txtSinopsis;
+	private JTextArea txtSinopsis;
 	private JTextField txtHorario;
 	
 	private JLabel lbImagen;
@@ -57,45 +58,49 @@ public class PanelPelicula extends JPanel{
 		add(panelSinopsisPelicula, BorderLayout.CENTER);
 		add(panelPosterPelicula, BorderLayout.EAST);
 		
+		TitledBorder border2 = BorderFactory.createTitledBorder("Sinopsis");
+		border2.setTitleColor(Color.BLACK);
+		panelSinopsisPelicula.setBorder(border2);
+		
 		lbTitulo = new JLabel("Título: ");
 		lbDuracion = new JLabel("Duración: ");
 		lbClasificacion = new JLabel("Clasificación: ");
 		lbDirector = new JLabel("Director: ");
-		lbSinopsis = new JLabel("Sinopsis: ");
+//		lbSinopsis = new JLabel("Sinopsis: ");
 		lbHorario = new JLabel("Horario: ");
 		
 		txtTitulo = new JTextField();
 		txtTitulo.setEditable(false);
 		txtTitulo.setBackground(Color.LIGHT_GRAY);
-		txtTitulo.setForeground(Color.BLUE);
+		txtTitulo.setForeground(Color.BLACK);
 
 		txtDuracion = new JTextField();
 		txtDuracion.setEditable(false);
 		txtDuracion.setBackground(Color.LIGHT_GRAY);
-		txtDuracion.setForeground(Color.BLUE);
+		txtDuracion.setForeground(Color.BLACK);
 
 		txtClasificacion = new JTextField();
 		txtClasificacion.setEditable(false);
 		txtClasificacion.setBackground(Color.LIGHT_GRAY);
-		txtClasificacion.setForeground(Color.BLUE);
+		txtClasificacion.setForeground(Color.BLACK);
 		
 		txtDirector = new JTextField();
 		txtDirector.setEditable(false);
 		txtDirector.setBackground(Color.LIGHT_GRAY);
-		txtDirector.setForeground(Color.BLUE);
+		txtDirector.setForeground(Color.BLACK);
 
-		txtSinopsis = new JTextField();
+		txtSinopsis = new JTextArea();
 		txtSinopsis.setEditable(false);
 		txtSinopsis.setBackground(Color.LIGHT_GRAY);
-		txtSinopsis.setForeground(Color.BLUE);
+		txtSinopsis.setForeground(Color.BLACK);
 		
 		txtHorario = new JTextField();
 		txtHorario.setEditable(false);
 		txtHorario.setBackground(Color.LIGHT_GRAY);
-		txtHorario.setForeground(Color.BLUE);
+		txtHorario.setForeground(Color.black);
 		
 		panelDatosPelicula.setLayout(new GridLayout(6,2));
-		panelSinopsisPelicula.setLayout(new GridLayout(2,1));
+		panelSinopsisPelicula.setLayout(new GridLayout(1,1));
 		
 		panelDatosPelicula.add(lbTitulo);
 		panelDatosPelicula.add(txtTitulo);
@@ -108,7 +113,7 @@ public class PanelPelicula extends JPanel{
 		panelDatosPelicula.add(lbHorario);
 		panelDatosPelicula.add(txtHorario);
 		
-		panelSinopsisPelicula.add(lbSinopsis);
+//		panelSinopsisPelicula.add(lbSinopsis);
 		panelSinopsisPelicula.add(txtSinopsis);
 		
 		lbImagen = new JLabel("Poster Película");
@@ -117,7 +122,7 @@ public class PanelPelicula extends JPanel{
 	}
 	
 	public void actualizarPanel(Sala sala) {
-		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy  HH:mm");
 		
 		txtTitulo.setText(sala.getPeli().getTitulo());
 		txtDuracion.setText(sala.getPeli().getDuracion().toString());
@@ -125,8 +130,15 @@ public class PanelPelicula extends JPanel{
 		txtDirector.setText(sala.getPeli().getDirector());
 		txtHorario.setText(sdf.format(sala.getHorario()));
 		
-		txtSinopsis.setText(sala.getPeli().getSinopsis());
+		txtSinopsis.setText(sala.getPeli().sinopsisSaltosLinea());
 		
+		
+		ImageIcon imagenOriginal = new ImageIcon("fotos/" + sala.getPeli().getFoto() + ".png");
+//		ImageIcon imagenOriginal = new ImageIcon("fotos/SHREK.png");
+		Image imagenAjustada = imagenOriginal.getImage().getScaledInstance(120, 150,
+				Image.SCALE_SMOOTH);
+		lbImagen.setText("");
+		lbImagen.setIcon(new ImageIcon(imagenAjustada));
 	}
 	
 }

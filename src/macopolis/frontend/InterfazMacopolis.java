@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import macopolis.backend.AplicacionMacopolis;
+import macopolis.backend.Sala;
 
 public class InterfazMacopolis extends JFrame{
 	
@@ -38,6 +39,8 @@ public class InterfazMacopolis extends JFrame{
 		add(panelPelicula, BorderLayout.NORTH);
 		add(panelSala, BorderLayout.CENTER);
 		add(panelNavegacion, BorderLayout.SOUTH);
+		
+		mostrarInformacionSala(aplicacionMacopolis.getSalaActual());
 
 	}
 	
@@ -45,6 +48,20 @@ public class InterfazMacopolis extends JFrame{
 		InterfazMacopolis interfaz = new InterfazMacopolis();
 		interfaz.setVisible(true);
 
+	}
+	
+	public void mostrarInformacionSala(Sala sala) {
+		panelPelicula.actualizarPanel(sala);
+	}
+	
+	public void siguiente() {
+		Sala sala = aplicacionMacopolis.getSalaSiguiente();
+		mostrarInformacionSala(sala);
+	}
+	
+	public void anterior() {
+		Sala sala = aplicacionMacopolis.getSalaAnterior();
+		mostrarInformacionSala(sala);
 	}
 
 //	//Método encargado de invocar el método que regresa la sala siguiente

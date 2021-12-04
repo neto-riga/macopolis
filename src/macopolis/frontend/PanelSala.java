@@ -3,7 +3,7 @@ package macopolis.frontend;
 /*******************
 última modificación:
 	04-12-2021
-	02:08 a.m.
+	12:38 p.m.
 *******************/
 
 import java.awt.Color;
