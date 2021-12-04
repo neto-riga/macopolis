@@ -2,17 +2,18 @@ package macopolis.backend;
 
 /*******************
 última modificación:
-	29-11-2021
+	04-12-2021
 *******************/
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 public class Sala {
 	private Pelicula peli;
 	private ArrayList<Boleto> boletos;
-	private String horario;
+	private Date horario;
 	
 	private final static int NUM_ASIENTOS = 60;
 	private final static float PRECIO_BOLETO = 60;
@@ -43,11 +44,11 @@ public class Sala {
 		this.boletos = boletos;
 	}
 	
-	public String getHorario() {
+	public Date getHorario() {
 		return horario;
 	}
 
-	public void setHorario(String horario) {
+	public void setHorario(Date horario) {
 		this.horario = horario;
 	}
 
@@ -87,14 +88,5 @@ public class Sala {
 		}
 		
 		return PRECIO_BOLETO;
-	}
-	
-/*******Main para hacer pruebas*************/
-	
-	public static void main(String[] args) {
-		Sala sala1 = new Sala(new Pelicula("La la land"));
-		sala1.compraBoleto(30, 5);
-		sala1.compraBoleto(30, 24);
-		sala1.imprimeBoletosDisponibles();
 	}
 }
