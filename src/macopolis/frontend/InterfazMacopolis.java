@@ -70,16 +70,5 @@ public class InterfazMacopolis extends JFrame{
 		mostrarInformacionSala(sala);
 	}
 
-//	//Método encargado de invocar el método que regresa la sala siguiente
-//		public void siguiente() {
-//			Sala salas = .getSalaSiguiente();
-//			//mostrarInformacionSala(sala);
-//		}
-//		
-//	//Método encargado de invocar el método que regresa la sala anterior
-//		public void anterior() {
-//			Sala salas= aplicacionCursos.getSalaAnterior();
-//			//mostrarInformacionSala(sala);
-//		}
 
 }
