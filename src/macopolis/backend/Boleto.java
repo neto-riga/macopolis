@@ -8,7 +8,7 @@ package macopolis.backend;
 public class Boleto {
 	private boolean comprado;
 	private String duenio;
-	private int lugar;
+	private Integer lugar;
 	
 	public Boleto() {
 		comprado = false;
@@ -33,7 +33,7 @@ public class Boleto {
 	public void setDuenio(String duenio) {
 		this.duenio = duenio;
 	}
-	public int getLugar() {
+	public Integer getLugar() {
 		return lugar;
 	}
 
