@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class AplicacionMacopolis {
 	private ArrayList<Sala> salas;
 	private Integer posicionSalaActual;
-//	private ArrayList<Pelicula> peliculas;
+	private MacopolisTxt macopolisTxt;
 	
 	public AplicacionMacopolis(){
 		posicionSalaActual=0;
@@ -28,6 +28,13 @@ public class AplicacionMacopolis {
 		String sinopsisShrek = "Once upon a time, in a far away swamp, there lived an ogre named Shrek (Mike Myers) whose precious solitude is suddenly shattered by an invasion of annoying fairy tale characters. They were all banished from their kingdom by the evil Lord Farquaad (John Lithgow). Determined to save their home -- not to mention his -- Shrek cuts a deal with Farquaad and sets out to rescue Princess Fiona (Cameron Diaz) to be Farquaad's bride. Rescuing the Princess may be small compared to her deep, dark secret.";
 		Pelicula shrek = new Pelicula("Shrek", 132, Genero.A, "Vicky Jenson", sinopsisShrek, "SHREK");
 		salas.add(new Sala(shrek, new Date()));
+		
+		salas.get(0).getBoletos().get(14).setComprado(true);
+		salas.get(0).getBoletos().get(15).setComprado(true);
+		salas.get(0).getBoletos().get(17).setComprado(true);
+		salas.get(0).getBoletos().get(44).setComprado(true);
+		
+		macopolisTxt = new MacopolisTxt(salas.get(0));
 	}
 	
 	public Sala getSalaActual() {
